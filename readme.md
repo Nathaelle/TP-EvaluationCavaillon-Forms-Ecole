@@ -9,6 +9,9 @@
     - Modification du fichier .env
     - Création de la base de données `php bin/console doctrine:database:create`
 
+    Création des entities: `php bin/console make:entity NomDeLaTable`
+    Création spécifique pour l'utilisateur: `php bin/console make:user User`
+
 ## Enoncé initial
 
 >Mme Delcourt, professeure des écoles, aimerait disposer d'un outil pédagogique innovant pour évaluer les acquis de ses élèves. 
