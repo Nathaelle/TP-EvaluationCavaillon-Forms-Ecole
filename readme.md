@@ -22,6 +22,12 @@
     - Définition des 3 méthodes pour l'affichage des 3 vues demandées + routes + création de 2 templates supplémentaires
     - Implémentation des traitements pour chaque vue
 
+5. Ajout des restrictions (access_control) dans security.yaml
+    - Création de 4 utilisateurs via fixtures
+    - Création Authenticator: `php bin/console make:auth` -> par formulaire 
+    - Ajout redirection vers espace perso si authentification réussie
+    - Ajout du chemin vers le formulaire de login dans le menu du site
+
 ## Enoncé initial
 
 >Mme Delcourt, professeure des écoles, aimerait disposer d'un outil pédagogique innovant pour évaluer les acquis de ses élèves. 
@@ -63,7 +69,7 @@
 >
 >### PARTIE 3
 >5. Gestion des comptes utilisateurs: Faites en sorte que seul un élève connecté puisse accéder à ses questionnaires, et que seule Mme Delcourt puisse ajouter un nouveau questionnaire.
->6. Créer le formulaire pour l'ajout d'un nouveau questionnaire pour Mme Machin.
+>6. Créer le formulaire pour l'ajout d'un nouveau questionnaire pour Mme Delcourt.
 >
 >### PARTIE 4
 >7. Faites en sorte que les questionnaires soient fonctionnels: lorsqu'un élève répond à l'un d'eux, son résultat est calculé (en fonction du nombre de questions, ce peut-être un pourcentage ou une note /nombre de questions).

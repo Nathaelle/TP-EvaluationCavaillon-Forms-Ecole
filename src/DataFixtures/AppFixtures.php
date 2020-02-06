@@ -2,18 +2,25 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Question;
-use App\Entity\Questionnaire;
+use App\Entity\User;
 use App\Entity\Reponse;
-use Faker\Factory as Faker;
+use App\Entity\Question;
 use App\Entity\Thematique;
+use Faker\Factory as Faker;
+use App\Entity\Questionnaire;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class AppFixtures extends Fixture
-{
-    public function load(ObjectManager $manager)
-    {
+class AppFixtures extends Fixture {
+
+    private $encoder;
+
+    public function __construct(UserPasswordEncoderInterface $encoder) {
+        $this->encoder = $encoder;
+    }
+    
+    public function load(ObjectManager $manager) {
         $faker = Faker::create('fr_FR');
         
         for($i = 0; $i < 6; $i++) {
@@ -42,6 +49,17 @@ class AppFixtures extends Fixture
                     }
                 }
             }
+        }
+
+
+        for($i = 0; $i < 4; $i++) {
+
+            $user = new User();
+            $user->setPseudo($faker->userName)
+                ->setPassword($this->encoder->encodePassword($user, 'test'))
+                ->setRoles(['ROLE_USER']);
+            $manager->persist($user);
+
         }
         
         $manager->flush();
