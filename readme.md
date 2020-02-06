@@ -2,6 +2,12 @@
 
 ------------------------------------------------
 
+## Eléments de correction
+
+1. MCD (voir fichier mcd)
+2. Implémenter le schéma dans MySQL (avec Doctrine)
+    - Modification du fichier .env
+    - Création de la base de données `php bin/console doctrine:database:create`
 
 ## Enoncé initial
 
