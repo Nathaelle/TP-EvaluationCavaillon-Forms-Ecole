@@ -12,6 +12,9 @@
     Création des entities: `php bin/console make:entity NomDeLaTable`
     Création spécifique pour l'utilisateur: `php bin/console make:user User`
 
+    Une fois les entités créées, créer le fichier de migration: `php bin/console make:migration`
+    Et l'exécuter: `php bin/console doctrine:migration:migrate`
+
 ## Enoncé initial
 
 >Mme Delcourt, professeure des écoles, aimerait disposer d'un outil pédagogique innovant pour évaluer les acquis de ses élèves. 
