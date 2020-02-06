@@ -16,6 +16,10 @@
     Et l'exécuter: `php bin/console doctrine:migration:migrate`
 3. Insertion de données via les fixtures: 
     - Installer le bundle: `composer require doctrine/doctrine-fixtures-bundle`
+    - Installer Faker: `composer require fzaninotto/faker`
+
+4. Création du controller responsable de l'espace perso: `php bin/console make:controller PersoController`
+    - Définition des 3 méthodes pour l'affichage des 3 vues demandées + routes + création de 2 templates supplémentaires
 
 ## Enoncé initial
 
