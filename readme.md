@@ -20,6 +20,7 @@
 
 4. Création du controller responsable de l'espace perso: `php bin/console make:controller PersoController`
     - Définition des 3 méthodes pour l'affichage des 3 vues demandées + routes + création de 2 templates supplémentaires
+    - Implémentation des traitements pour chaque vue
 
 ## Enoncé initial
 
