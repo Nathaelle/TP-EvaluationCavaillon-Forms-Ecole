@@ -14,6 +14,8 @@
 
     Une fois les entités créées, créer le fichier de migration: `php bin/console make:migration`
     Et l'exécuter: `php bin/console doctrine:migration:migrate`
+3. Insertion de données via les fixtures: 
+    - Installer le bundle: `composer require doctrine/doctrine-fixtures-bundle`
 
 ## Enoncé initial
 
