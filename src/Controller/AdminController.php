@@ -72,10 +72,7 @@ class AdminController extends AbstractController {
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
 
-
         if($form->isSubmitted() && $form->isValid()) {
-            $question->setQuestionnaire($questionnaire);
-            $manager->persist($question);
 
             for($i = 1; $i <= 4; $i++) {
                 $reponse = new Reponse();
@@ -86,8 +83,12 @@ class AdminController extends AbstractController {
                 } else {
                     $reponse->setValue(false);
                 }
-                $manager->persist($reponse);
+                $question->addReponse($reponse);
             }
+            
+            $question->setQuestionnaire($questionnaire);
+            $manager->persist($question);
+
             $manager->flush();
             return $this->redirectToRoute('admin_questions', ['id' => $questionnaire->getId()]);
         }
