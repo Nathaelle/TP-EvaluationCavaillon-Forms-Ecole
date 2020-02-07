@@ -2,13 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\Question;
 use App\Entity\Thematique;
+use App\Form\QuestionType;
 use App\Form\ThematiqueType;
 use App\Entity\Questionnaire;
+use App\Entity\Reponse;
 use App\Form\QuestionnaireType;
-use App\Repository\QuestionnaireRepository;
+use App\Repository\QuestionRepository;
 use Doctrine\Persistence\ObjectManager;
 use App\Repository\ThematiqueRepository;
+use App\Repository\QuestionnaireRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -62,10 +66,38 @@ class AdminController extends AbstractController {
     /**
      * @Route("/admin/questionnaire-{id}", name="admin_questions")
      */
-    public function addQuestions() {
+    public function addQuestions(Questionnaire $questionnaire, Request $request, ObjectManager $manager, QuestionRepository $repo) {
+
+        $question = new Question();
+        $form = $this->createForm(QuestionType::class, $question);
+        $form->handleRequest($request);
+
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $question->setQuestionnaire($questionnaire);
+            $manager->persist($question);
+
+            for($i = 1; $i <= 4; $i++) {
+                $reponse = new Reponse();
+                $reponse->setLibelle($request->request->get('question')['reponse'.$i])
+                        ->setQuestion($question);
+                if(isset($request->request->get('question')['value'.$i])) {
+                    $reponse->setValue(true);
+                } else {
+                    $reponse->setValue(false);
+                }
+                $manager->persist($reponse);
+            }
+            $manager->flush();
+            return $this->redirectToRoute('admin_questions', ['id' => $questionnaire->getId()]);
+        }
+        
+        $questions = $repo->findBy(['questionnaire' => $questionnaire]);
 
         return $this->render('admin/forms/questions.html.twig', [
-            'controller_name' => 'AdminController',
+            'questionnaire' => $questionnaire,
+            'questions' => $questions,
+            'form' => $form->createView()
         ]);
     }
 

@@ -30,9 +30,6 @@ class QuestionnaireType extends AbstractType
                 'choice_label' => function(Thematique $theme, $key, $value) {
                     return strtoupper($theme->getNom());
                 },
-                'choice_attr' => function(Thematique $theme, $key, $value) {
-                    return ['class' => 'category_'.strtolower($theme->getNom())];
-                },
                 'choice_value' => function (?Thematique $theme) {
                     return $theme ? $theme->getId() : '';
                 }
