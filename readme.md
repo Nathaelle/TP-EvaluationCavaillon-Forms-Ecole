@@ -36,6 +36,8 @@
 6. Création d'un formulaire d'ajout d'un nouvelle thématique: `php bin/console make:form ThematiqueType`
 Création du formulaire d'ajout d'un nouveau questionnaire : `php bin/console make:form QuestionnaireType`
 
+Création du formulaire d'ajout d'une nouvelle question, et des réponses associées: `php bin/console make:form QuestionType`
+
 
 ## Enoncé initial
 
