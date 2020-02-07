@@ -15,15 +15,24 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item active mr-4">
                     <a class="nav-link" href="#">Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
                 </li>
                 {% if( is_granted('ROLE_ADMIN') ) %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('admin_home') }}">Espace admin</a>
+                </li>
+                {% endif %}
+                {% if app.user %}
+                <li class="nav-item mr-4">
+                    <a class="nav-link" href="{{ path('perso_themes') }}">Mon espace</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-primary my-2 my-sm-0" href="{{ path('app_logout') }}">Déconnexion</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="btn btn-primary my-2 my-sm-0" href="{{ path('app_login') }}">Connexion</a>
                 </li>
                 {% endif %}
                 </ul>
