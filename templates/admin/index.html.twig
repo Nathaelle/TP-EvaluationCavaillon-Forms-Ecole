@@ -4,9 +4,11 @@
 
 {% block body %}
 
-<h2>Que souhaitez-vous faire ?</h2>
-<ul>
-    <li><a href="{{ path('admin_questionnaires') }}">Gérer les questionnaires</a></li>
-    <li><a href="{{ path('admin_users') }}">Gérer les utilisateurs</a></li>
-</ul>
+<div class="row mt-4 mb-4">
+    <h2 class="col-md-10 m-auto">Que souhaitez-vous faire ?</h2>
+    <ul class="col-md-10 m-auto">
+        <li class="ml-4"><a href="{{ path('admin_questionnaires') }}">Gérer les questionnaires</a></li>
+        <li class="ml-4"><a href="{{ path('admin_users') }}">Gérer les utilisateurs</a></li>
+    </ul>
+</div>
 {% endblock %}

@@ -24,7 +24,7 @@ class Question
     private $intitule;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Reponse", mappedBy="question", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Reponse", mappedBy="question", orphanRemoval=true, cascade={"persist"})
      */
     private $reponses;
 

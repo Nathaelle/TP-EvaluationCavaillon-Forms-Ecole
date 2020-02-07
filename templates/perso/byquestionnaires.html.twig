@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PersoController!{% endblock %}
+{% block title %}{{ thematique.nom | upper }}: Tous les questionnaires!{% endblock %}
 
 {% block body %}
-<div class="mt-4">
-    <ul class="list-group">
+<div class="mt-4 row">
+    <h2 class="text-primary col-sm-12 mb-4 text-center">Tu as choisi : {{ thematique.nom | upper }} !</h2>
+    <p class="h3 text-primary col-sm-12 mb-4 text-center">Choisis maintenant un questionnaire :</p>
+    <ul class="list-group col-md-8 m-auto">
         {% for quest in questionnaires %}
         <li class="list-group-item"><a href="{{ path('perso_questions', {'id': quest.id})}}">{{ quest.titre }}</a></li>
         {% endfor %}

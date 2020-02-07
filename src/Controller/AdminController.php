@@ -2,13 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Form\UserType;
+use App\Entity\Reponse;
 use App\Entity\Question;
 use App\Entity\Thematique;
 use App\Form\QuestionType;
 use App\Form\ThematiqueType;
 use App\Entity\Questionnaire;
-use App\Entity\Reponse;
 use App\Form\QuestionnaireType;
+use App\Repository\UserRepository;
 use App\Repository\QuestionRepository;
 use Doctrine\Persistence\ObjectManager;
 use App\Repository\ThematiqueRepository;
@@ -16,6 +19,7 @@ use App\Repository\QuestionnaireRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AdminController extends AbstractController {
 
@@ -85,7 +89,7 @@ class AdminController extends AbstractController {
                 }
                 $question->addReponse($reponse);
             }
-            
+
             $question->setQuestionnaire($questionnaire);
             $manager->persist($question);
 
@@ -105,10 +109,24 @@ class AdminController extends AbstractController {
     /**
      * @Route("/admin/users", name="admin_users")
      */
-    public function adduser() {
+    public function adduser(Request $request, ObjectManager $manager, UserRepository $repo, UserPasswordEncoderInterface $encoder) {
+
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
+            $manager->persist($user);
+            $manager->flush();
+            return $this->redirectToRoute('admin_users');
+        }
+
+        $users = $repo->findAll();
 
         return $this->render('admin/forms/users.html.twig', [
-            'controller_name' => 'AdminController',
+            'users' => $users,
+            'form' => $form->createView()
         ]);
     }
 }

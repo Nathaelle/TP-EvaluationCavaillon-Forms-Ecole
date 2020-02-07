@@ -3,15 +3,16 @@
 {% block title %}{{ questionnaire.titre }}{% endblock %}
 
 {% block body %}
-<div class="mt-4">
+<div class="mt-4 row">
 
-    <form action="{{ path('result') }}" method="post">
+    <h2 class="text-primary col-md-10 col-lg-8 m-auto pb-2">[{{ questionnaire.thematique.nom | upper }}] {{ questionnaire.titre }}</h2>
+    <form class="col-md-10 col-lg-8 m-auto" action="{{ path('result') }}" method="post">
 
         <ul class="list-group">
 
             {% for question in questions %}
             <li class="list-group-item">
-                <p>{{ loop.index }}. {{ question.intitule }}</p> 
+                <p class="text-primary">{{ loop.index }}. {{ question.intitule }}</p> 
                 
                     {% for reponse in question.reponses %}
                     <div>
@@ -25,7 +26,7 @@
 
         </ul>
         
-        <input type="submit" value="Je valide mes réponses !">
+        <input class="btn btn-primary mt-4" type="submit" value="Je valide mes réponses !">
 
     </form>
 <div>
