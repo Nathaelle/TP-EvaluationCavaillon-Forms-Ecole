@@ -38,6 +38,7 @@ Création du formulaire d'ajout d'un nouveau questionnaire : `php bin/console ma
 
 Création du formulaire d'ajout d'une nouvelle question, et des réponses associées: `php bin/console make:form QuestionType`
 
+7. Création d'un controller pour la gestion de la soumission des questionnaires: `php bin/console make:controller ResultController`
 
 ## Enoncé initial
 

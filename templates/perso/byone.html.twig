@@ -5,7 +5,7 @@
 {% block body %}
 <div class="mt-4">
 
-    <form action="" method="post">
+    <form action="{{ path('result') }}" method="post">
 
         <ul class="list-group">
 
@@ -24,7 +24,7 @@
             {% endfor %}
 
         </ul>
-
+        
         <input type="submit" value="Je valide mes réponses !">
 
     </form>
