@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+
+<h2>Que souhaitez-vous faire ?</h2>
+<ul>
+    <li><a href="{{ path('admin_questionnaires') }}">Gérer les questionnaires</a></li>
+    <li><a href="{{ path('admin_users') }}">Gérer les utilisateurs</a></li>
+</ul>
+{% endblock %}

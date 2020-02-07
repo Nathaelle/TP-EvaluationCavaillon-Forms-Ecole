@@ -14,6 +14,7 @@
 
     Une fois les entités créées, créer le fichier de migration: `php bin/console make:migration`
     Et l'exécuter: `php bin/console doctrine:migration:migrate`
+
 3. Insertion de données via les fixtures: 
     - Installer le bundle: `composer require doctrine/doctrine-fixtures-bundle`
     - Installer Faker: `composer require fzaninotto/faker`
@@ -27,6 +28,14 @@
     - Création Authenticator: `php bin/console make:auth` -> par formulaire 
     - Ajout redirection vers espace perso si authentification réussie
     - Ajout du chemin vers le formulaire de login dans le menu du site
+
+    - Modification d'un utilisateur pour compte Mme Delcourt: `php bin/console doctrine:query:sql "UPDATE user SET pseudo = 'delcourt', roles = '[\"ROLE_ADMIN\"]' WHERE user.id = 1;"`
+    - Création d'un AdminController pour Mme Delcourt, (et du template associé): `php bin/console make:controller AdminController`
+    - Ajout dans le menu d'un lien d'accès à l'espace admin pour Mme Delcourt seulement
+    
+6. Création d'un formulaire d'ajout d'un nouvelle thématique: `php bin/console make:form ThematiqueType`
+Création du formulaire d'ajout d'un nouveau questionnaire : `php bin/console make:form QuestionnaireType`
+
 
 ## Enoncé initial
 
