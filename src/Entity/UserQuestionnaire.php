@@ -12,24 +12,19 @@ use Doctrine\ORM\Mapping as ORM;
 class UserQuestionnaire
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
      * @ORM\Column(type="float")
      */
     private $note;
 
     /**
+     * @ORM\Id()
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="userQuestionnaires")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
+     * @ORM\Id()
      * @ORM\ManyToOne(targetEntity="App\Entity\Questionnaire", inversedBy="userQuestionnaires")
      * @ORM\JoinColumn(nullable=false)
      */

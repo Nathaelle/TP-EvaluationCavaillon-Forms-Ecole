@@ -40,6 +40,10 @@ Création du formulaire d'ajout d'une nouvelle question, et des réponses associ
 
 7. Création d'un controller pour la gestion de la soumission des questionnaires: `php bin/console make:controller ResultController`
 
+8. Modification de notre entité UserQuestionnaire (ajout clé composite) (puis migration vers la base)
+    - Modification de notre PersoController pour récupérer les notes
+    - Modification du template
+
 ## Enoncé initial
 
 >Mme Delcourt, professeure des écoles, aimerait disposer d'un outil pédagogique innovant pour évaluer les acquis de ses élèves. 

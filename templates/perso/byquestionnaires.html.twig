@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{# need propriete disabled pour questionnaire + note #}
+
 {% block title %}{{ thematique.nom | upper }}: Tous les questionnaires!{% endblock %}
 
 {% block body %}
@@ -8,7 +10,18 @@
     <p class="h3 text-primary col-sm-12 mb-4 text-center">Choisis maintenant un questionnaire :</p>
     <ul class="list-group col-md-8 m-auto">
         {% for quest in questionnaires %}
-        <li class="list-group-item"><a href="{{ path('perso_questions', {'id': quest.id})}}">{{ quest.titre }}</a></li>
+            {% if quest.disabled %}
+                <li class="list-group-item">{{ quest.titre }} 
+                    <span class="border border-primary p-1 mr-2"> Terminé </span> 
+                    {% if (notes[quest.id] >= 50) %}
+                        <span class="text-success">Note : {{ notes[quest.id] | round(1, 'floor') }} %</span>
+                    {% else %}
+                        <span class="text-danger">Note : {{ notes[quest.id] | round(1, 'floor') }} %</span>
+                    {% endif %}
+                </li>
+            {% else %}
+                <li class="list-group-item"><a href="{{ path('perso_questions', {'id': quest.id})}}">{{ quest.titre }}</a></li>
+            {% endif %}
         {% endfor %}
     </ul>
 <div>

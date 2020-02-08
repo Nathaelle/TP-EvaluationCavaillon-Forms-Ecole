@@ -39,11 +39,14 @@ class Questionnaire
      */
     private $userQuestionnaires;
 
+    private $disabled;
+
     
     public function __construct()
     {
         $this->questions = new ArrayCollection();
         $this->userQuestionnaires = new ArrayCollection();
+        $this->disabled = false;
     }
 
     public function getId(): ?int
@@ -135,6 +138,14 @@ class Questionnaire
         }
 
         return $this;
+    }
+
+    public function isDisabled(): ?bool {
+        return $this->disabled;
+    }
+
+    public function setDisabled(bool $disabled) {
+        $this->disabled = $disabled;
     }
 
 }
