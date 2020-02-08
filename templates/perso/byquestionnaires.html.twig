@@ -7,7 +7,8 @@
 {% block body %}
 <div class="mt-4 row">
     <h2 class="text-primary col-sm-12 mb-4 text-center">Tu as choisi : {{ thematique.nom | upper }} !</h2>
-    <p class="h3 text-primary col-sm-12 mb-4 text-center">Choisis maintenant un questionnaire :</p>
+    <p class="col-sm-12 text-center"><span class="border border-primary p-2">Moyenne : {{ moyenne }} %</span></p>
+    <p class="h3 text-primary col-sm-12 mb-4 mt-4 text-center">Choisis maintenant un questionnaire :</p>
     <ul class="list-group col-md-8 m-auto">
         {% for quest in questionnaires %}
             {% if quest.disabled %}

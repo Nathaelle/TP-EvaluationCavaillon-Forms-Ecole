@@ -17,7 +17,7 @@ class PersoController extends AbstractController
     /**
      * @Route("/perso", name="perso_themes")
      */
-    public function showByThemes(ThematiqueRepository $repo) {
+    public function showByThemes(ThematiqueRepository $repo, UserQuestionnaireRepository $noteRepo) {
 
         $thematiques = $repo->findAll();
 
@@ -34,18 +34,26 @@ class PersoController extends AbstractController
         $questionnaires = $repo->findBy(['thematique' => $theme]);
 
         $notes = [];
+        $moyenne = 'NC';
+        $somme = 0;
         foreach($questionnaires as $quest) {
             $note = $noteRepo->find(['user' => $this->getUser(), 'questionnaire' => $quest]);
             if(!empty($note)) {
                 $quest->setDisabled(true);
                 $notes[$quest->getId()] = $note->getNote();
+                $somme += $note->getNote();
             }
+        }
+
+        if(!empty($notes)) {
+            $moyenne = round($somme/sizeof($notes), 1);
         }
 
         return $this->render('perso/byquestionnaires.html.twig', [
             'questionnaires' => $questionnaires,
             'thematique' => $theme,
-            'notes' => $notes
+            'notes' => $notes, 
+            'moyenne' => $moyenne
         ]);
     }
 

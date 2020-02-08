@@ -44,6 +44,8 @@ Création du formulaire d'ajout d'une nouvelle question, et des réponses associ
     - Modification de notre PersoController pour récupérer les notes
     - Modification du template
 
+9. Moyenne par thématique et affichage
+
 ## Enoncé initial
 
 >Mme Delcourt, professeure des écoles, aimerait disposer d'un outil pédagogique innovant pour évaluer les acquis de ses élèves. 
